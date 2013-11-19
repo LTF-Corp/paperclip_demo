@@ -34,4 +34,15 @@ PaperclipDemo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Amazon S3 settings for Paperclip uploads
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_protocol => 'http',
+    :s3_credentials => {
+      :bucket => ENV['LTF_S3_BUCKET'],
+      :access_key_id => ENV['LTF_S3_KEY'],
+      :secret_access_key => ENV['LTF_S3_SECRET']
+    }
+  }
 end
